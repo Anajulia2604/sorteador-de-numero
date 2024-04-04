@@ -2,23 +2,30 @@ function sortear() {
     let quantidade = parseInt(document.getElementById('quantidade').value);
     let de = parseInt(document.getElementById('de').value); //parseint parametro o recebimento de um numero inteiro
     let ate = parseInt(document.getElementById('ate').value);
-
-    let sorteados = [];
-    let numero;
-
-    for (let i = 0; i < quantidade; i++) {
-        numero = obterNumeroAleatorio(de, ate);
-
-        while (sorteados.includes(numero)) {
-            numero = obterNumeroAleatorio(de, ate);
-        }
-
-        sorteados.push(numero);
+    if (de >= ate) {
+        alert('Campo "Do número" deve ser inferior ao campo "Até o número". Verifique!');
+        return;
     }
 
-    let resultado = document.getElementById('resultado');
-    resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`;
-    alterarStatusBotao();
+
+let sorteados = [];
+let numero;
+
+
+for (let i = 0; i < quantidade; i++) {
+    numero = obterNumeroAleatorio(de, ate);
+
+
+    while (sorteados.includes(numero)) {
+        numero = obterNumeroAleatorio(de, ate);
+    }
+
+    sorteados.push(numero);
+}
+
+let resultado = document.getElementById('resultado');
+resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${sorteados}</label>`;
+alterarStatusBotao();
 }
 
 //push é para incluir o valor no array sorteados , Array[]
